@@ -38,7 +38,7 @@ jobs:
     # Step 5: Copy Angular build output to ASP.NET Core wwwroot
     - name: Copy Angular Build to wwwroot
       run: |
-        cp -R ${{ github.workspace }}/yangspaceapp.client/dist/* ${{ github.workspace }}/YangSpaceApp.Server/wwwroot/
+        cp -R ${{ github.workspace }}/yangspaceapp.client/dist/browser* ${{ github.workspace }}/YangSpaceApp.Server/wwwroot
 
     # Step 6: Publish ASP.NET Core application
     - name: Publish ASP.NET Core App
