@@ -73,7 +73,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapFallbackToFile("index.html"); // Serves Angular app for unknown routes
+});
 // Use CORS
 app.UseCors("AllowAngularApp");
 app.UseCors("AllowAll");
