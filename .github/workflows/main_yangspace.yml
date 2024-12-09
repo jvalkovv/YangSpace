@@ -6,12 +6,12 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Check out code
+    # Step 1: Check out the code
     - name: Checkout repository
       uses: actions/checkout@v3
 
@@ -19,30 +19,30 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0 # Use the version your project targets
+        dotnet-version: 7.0 # Update based on your project requirements
 
     # Step 3: Setup Node.js for Angular
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 18 # Use the Node.js version your Angular app requires
+        node-version: 18 # Adjust to the Node.js version required by your Angular app
 
-    # Step 4: Build Angular app
+    # Step 4: Install Angular dependencies and build the app
     - name: Build Angular App
-      working-directory: yangspaceapp.client/
+      working-directory: yangspaceapp.client
       run: |
         npm install
         npm run build -- --configuration production
 
-    # Step 5: Move Angular output to ASP.NET Core wwwroot
+    # Step 5: Copy Angular build output to ASP.NET Core wwwroot
     - name: Copy Angular Build to wwwroot
       run: |
         mkdir -p YangSpaceApp.Server/wwwroot
-        cp -R YangSpaceApp.Client/dist/browser/* YangSpaceApp.Server/wwwroot/
+        cp -R yangspaceapp.client/dist/* YangSpaceApp.Server/wwwroot/
 
-    # Step 6: Publish ASP.NET Core app
+    # Step 6: Publish ASP.NET Core application
     - name: Publish ASP.NET Core App
-      working-directory: YangSpaceApp.Server/
+      working-directory: YangSpaceApp.Server
       run: |
         dotnet publish -c Release -o ./publish
 
@@ -50,7 +50,7 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: <yangspace> # Replace with your App Service name
+        app-name: yangspace # Replace with your actual App Service name
         slot-name: production
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: YangSpaceApp.Server/publish
