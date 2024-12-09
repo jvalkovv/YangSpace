@@ -19,17 +19,17 @@ export class HomepageComponent implements OnInit {
     {
       title: 'Find Service Providers',
       description: 'Connect with experts in your area for various services.',
-      image: `${this.apiUrl}/image/service1.jpg`,
+      image: `${this.apiUrl}/images/service1.jpg`,
     },
     {
       title: 'Book Appointments',
       description: 'Schedule your appointments with ease and convenience.',
-      image: `${this.apiUrl}/image/service2.jpg`,
+      image: `${this.apiUrl}/images/service2.jpg`,
     },
     {
       title: 'Manage Your Schedule',
       description: 'Keep track of your bookings with our advanced scheduler.',
-      image: `${this.apiUrl}/image/s3.jpg`,
+      image: `${this.apiUrl}/images/s3.jpg`,
     },
   ];
 
