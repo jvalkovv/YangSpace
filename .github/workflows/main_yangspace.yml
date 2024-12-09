@@ -29,7 +29,7 @@ jobs:
 
     # Step 4: Build Angular app
     - name: Build Angular App
-      working-directory: YangSpaceApp.Client
+      working-directory: yangspaceapp.client/
       run: |
         npm install
         npm run build -- --configuration production
