@@ -38,7 +38,7 @@ jobs:
     - name: Copy Angular Build to wwwroot
       run: |
         mkdir -p YangSpaceApp.Server/wwwroot
-        cp -R yangspaceapp.client/dist/* YangSpaceApp.Server/wwwroot
+        cp -R yangspaceapp.client/dist/browser* YangSpaceApp.Server/wwwroot
 
     # Step 6: Publish ASP.NET Core application
     - name: Publish ASP.NET Core App
@@ -50,7 +50,7 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: yangspace # Replace with your actual App Service name
+        app-name: yang # Replace with your actual App Service name
         slot-name: production
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: YangSpaceApp.Server/publish
