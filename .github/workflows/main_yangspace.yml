@@ -42,7 +42,7 @@ jobs:
 
     # Step 6: Publish ASP.NET Core app
     - name: Publish ASP.NET Core App
-      working-directory: YangSpaceApp.Server
+      working-directory: YangSpaceApp.Server/
       run: |
         dotnet publish -c Release -o ./publish
 
